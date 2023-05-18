@@ -1,4 +1,5 @@
 import React from "react";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 function Notes(props) {
 
@@ -8,7 +9,7 @@ function Notes(props) {
             <p>{props.content}</p>
             <button  onClick={()=>{
               props.onChecked(props.id);
-            }}>DELETE</button>
+            }}><DeleteOutlineIcon/></button>
         </div>
     );
 }
