@@ -3,6 +3,7 @@ import AddTaskTwoToneIcon from "@mui/icons-material/AddTaskTwoTone";
 import Fab from "@mui/material/Fab";
 
 import Zoom from "@mui/material/Zoom";
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -60,9 +61,13 @@ function CreateArea(props) {
             rows={isExpanded ? 3 : 1}
             value={note.content}
           />
-          {note.title === "" && note.content === "" ? <></> : <Zoom in={isExpanded}>
-            <Fab color="primary" aria-label="add" onClick={addItem}><AddTaskTwoToneIcon /></Fab>
-          </Zoom>}
+          {note.title === "" && note.content === "" ? <></> : <>
+            <Zoom in><Fab className="del" color="primary" aria-label="add" onClick={() => changeIT({
+              title: "",
+              content: ""
+            })}><CloseIcon /></Fab></Zoom><Zoom in>
+              <Fab className="add" color="primary" aria-label="add" onClick={addItem}><AddTaskTwoToneIcon /></Fab>
+            </Zoom></>}
 
         </form>
       </div>
