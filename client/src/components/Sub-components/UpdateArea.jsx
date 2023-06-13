@@ -4,6 +4,8 @@ import Fab from "@mui/material/Fab";
 
 import Zoom from "@mui/material/Zoom";
 
+import CloseIcon from '@mui/icons-material/Close';
+
 
 function UpdateArea(props) {
 
@@ -36,7 +38,8 @@ function UpdateArea(props) {
         props.sendArray(props.note);
         props.changeIT({
             title: "",
-            content: ""
+            content: "",
+            _id :""
         })
         props.changeUpdate(false);
         event.preventDefault();
@@ -63,9 +66,15 @@ function UpdateArea(props) {
                     rows={3}
                     value={props.note.content}
                 />                
-                {props.note.title === "" && props.note.content === "" ? <></> : <Zoom in>
-                    <Fab color="primary" aria-label="add" onClick={addItem}><AddTaskTwoToneIcon /></Fab>
-                </Zoom>}              
+                {props.note.title === "" && props.note.content === "" ? <></> : 
+                <>
+                    <Zoom in><Fab className="del" color="primary" aria-label="add" onClick={() => props.changeIT({
+                        title: "",
+                        content: "",
+                        _id:""
+                    })}><CloseIcon /></Fab></Zoom><Zoom in>
+                    <Fab className="add" color="primary" aria-label="add" onClick={addItem}><AddTaskTwoToneIcon /></Fab>
+                        </Zoom></>}              
             </form>
         </div>
     );
