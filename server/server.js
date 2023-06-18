@@ -3,14 +3,20 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require('body-parser');
 
-const routes = require("./routes/kepperRoutes")
+const kepperRoutes = require("./routes/kepperRoutes");
+const userRoute = require("./routes/userRouter");
 
 require('dotenv').config()
 
 const app = express();
 const PORT = process.env.port || 5000;
 
-app.use(bodyParser.urlencoded());
+//  warning -> body-parser deprecated undefined extended: provide extended option server.js:14:20
+// app.use(bodyParser.urlencoded());
+// so use the below code 
+app.use(express.urlencoded({ extended: true }))
+
+
 app.use(bodyParser.json());
 
 app.use(cors());
@@ -20,6 +26,7 @@ mongoose
     .then(() => console.log("Connected To MongoDB"))
     .catch((err) => console.log(err))
 
-app.use(routes);
+app.use('/',kepperRoutes);
+app.use('/user', userRoute)
 
 app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
