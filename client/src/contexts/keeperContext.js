@@ -5,7 +5,7 @@ export const KeeperContext = createContext();
 
 //defining reducer function which has coustom state logic
 // updating the state
-const kepperReducer = (state, action) => {
+const keeperReducer = (state, action) => {
     switch (action.type) {
         //get all data from database and update the keeper object
         case 'SET_KEEPER':
@@ -17,15 +17,19 @@ const kepperReducer = (state, action) => {
             console.log(action.payload);
             return {
                 // combine new object with already existing array of object
-                keeper: [action.payload]
+                keeper: [action.payload, ...state.keeper]
             }
         //while updating existing note
         case 'UPDATE_KEEPER':
-            // const arrayWithOutUpdateNote = state.keeper.filter((w) => w._id !== action.payload._id)
-            // console.log(arrayWithOutUpdateNote);
-            console.log({title : action.payload.title , content : action.payload.content} );
+
+            if (!action.payload) {
+                return state; // If payload is undefined, return the current state
+            }
+
+            const updatedKeeper = [action.payload, ...state.keeper.filter((w) => w._id !== action.payload._id)];
+            console.log(updatedKeeper);
             return {
-                kepper: [action.payload]
+                keeper: updatedKeeper
             }
         // while deleting note
         case 'DELETE_KEEPER':
@@ -42,7 +46,7 @@ const kepperReducer = (state, action) => {
 export const KeeperContextProvider = ({ children }) => {
     // here children is basically <App />
 
-    const [state, dispatch] = useReducer(kepperReducer, { keeper: null })
+    const [state, dispatch] = useReducer(keeperReducer, { keeper: null })
     // initally state = {keeper : null}
 
     return (

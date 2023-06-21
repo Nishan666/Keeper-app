@@ -27,7 +27,7 @@ const UpdateArea = (props) => {
             content: props.updateData.content,
             _id: props.updateData._id
         });
-    }, [])
+    }, [props.secondTimeUpdate])
 
 
     // it is called on every update in context or title area , get the value and update the state
