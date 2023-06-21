@@ -1,19 +1,26 @@
 import React from "react";
+// for material ui(delete and update btn)
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
-function Notes(props) {
-
+// props -> data(_id,title,context) , onUpdate , onDelete 
+const Notes = (props) => {
+    const {_id , title , content } = props.data
     return (
         <div className="note">
-            <h1>{props.title}</h1>
-            <p>{props.content}</p>
+
+            {/* title and content */}
+            <h1>{title}</h1>
+            <p>{content}</p>
+
+            {/* update and delete btn */}
             <button onClick={() => {
-                props.onUpdate(props);
+                props.onUpdate(props.data);
             }}><EditOutlinedIcon /></button>
             <button  onClick={()=>{
-            props.onDelete(props.id);
+            props.onDelete(_id);
             }}><DeleteOutlineIcon/></button>
+
         </div>
     );
 }
