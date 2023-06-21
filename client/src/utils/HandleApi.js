@@ -32,7 +32,7 @@ const addKeeper = async(note , dispatch)=>{
     })
 }
 
-//update existing notes in db
+// update existing notes in db
 const updateKeeper = async(note , dispatch) => {
     await axios
         .post(`${baseURL}/update`, note)
@@ -41,6 +41,7 @@ const updateKeeper = async(note , dispatch) => {
         dispatch({type : 'UPDATE_KEEPER' , payload : data.data})
         })
 }
+
 
 // delete note from db
 const deleteKeeper =async (_id , dispatch) => {

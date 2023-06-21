@@ -23,12 +23,14 @@ const MainPage = () => {
     // call every time when the page is refreshed
     useEffect(() => {
         getKeeper(dispatch);
+        console.log("boom!!!");
     }, [dispatch])
 
     const takeNote = (note) => {
         // if update is true updateData(it has extra data _id) else addKeeper(it has only title and content)
         isUpdate ? updateKeeper(note , dispatch) : addKeeper(note ,dispatch);
     }
+
 
 
     //*********Notes**********/
