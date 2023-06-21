@@ -14,7 +14,7 @@ module.exports.saveKeeper = async (req, res) => {
     .then((data)=>{
         console.log("Added Sucessfully...");
         console.log(data);
-        res.send(data);
+        res.status(200).json(data)
     })
 }
 
@@ -24,7 +24,7 @@ module.exports.updateKeeper = async (req, res) => {
         .findByIdAndUpdate(data._id, { title: data.title, content: data.content, author: data.author,email : data.email, updatedOn: date })
         .then((data) => {
             console.log("Update Sucessfully...");
-            res.send("Update Sucessfully...");
+            res.status(200).json(data)
         })
         .catch((err)=>console.log(err))
 }
@@ -35,7 +35,7 @@ module.exports.deleteKeeper = async (req, res) => {
         .findByIdAndDelete(_id)
         .then(() => {
             console.log("Delete Sucessfully...");
-            res.send("Deleted Sucessfully...");
+            res.status(200).json({_id :_id})
         })
         .catch((err) => console.log(err))
 }

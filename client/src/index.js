@@ -1,10 +1,13 @@
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import React from "react";
-import  ReactDOM  from "react-dom";
+import ReactDOM from "react-dom";
 import App from './components/App';
+import { KeeperContextProvider } from './contexts/keeperContext';
 
 ReactDOM.render(
-<BrowserRouter>
-<App />
-</BrowserRouter>
-,document.getElementById("root"));
+    <KeeperContextProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </KeeperContextProvider>
+    , document.getElementById("root"));

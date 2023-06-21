@@ -3,65 +3,70 @@ import Notes from "./Notes";
 import CreateArea from "./CreateArea";
 import { getKeeper, addKeeper, deleteKeeper, updateKeeper } from "../../utils/HandleApi";
 import UpdateArea from "./UpdateArea"
+import { useKeeperContext } from "../../hooks/useKeeperContext";
 
 
 const MainPage = () => {
-    const [array, changeArray] = useState([]);
 
-    const [update, changeUpdate] = useState(false);
+    // keeper state is mantained and updated using useReducer
+    // keeper has all the Notes
+    const {keeper , dispatch} = useKeeperContext();
 
+    // store state of update status , if update is true then, show update info in <UpdateArea> else <CreateArea >
+    const [isUpdate, changeIsUpdate] = useState(false);
+    // state to store the data of single note that come for update
     const [updateData, changeUpdateData] = useState({})
-
-    const [s2ndTimeUpdate, sets2ndTimeUpdate] = useState(false);
-
-    const [note, changeIT] = useState({
-        title: "",
-        content: "",
-        _id: ""
-    });
+    //update note is called when already 1 update exists
+    const [secondTimeUpdate, setSecondTimeUpdate] = useState(false);
 
 
-
+    // call every time when the page is refreshed
     useEffect(() => {
-        getKeeper(changeArray);
-    }, [])
+        getKeeper(dispatch);
+    }, [dispatch])
 
-    function sendArray(note) {
-        console.log(note);
-        update ? updateKeeper(note, changeArray) : addKeeper(note, changeArray);
+    const takeNote = (note) => {
+        // if update is true updateData(it has extra data _id) else addKeeper(it has only title and content)
+        isUpdate ? updateKeeper(note , dispatch) : addKeeper(note ,dispatch);
     }
 
 
-    function deleteNote(id) {
-        deleteKeeper(id, changeArray);
+    //*********Notes**********/
+    //it is called when delete btn is clicked on note
+    const deleteNote = (_id) => {
+        deleteKeeper(_id , dispatch);
     }
-
-    function updateNote(data) {
-        changeUpdate(true);
+    //it is called when update btn is clicked on note
+    const updateNote = (data) => {
+        // change update status to true
+        changeIsUpdate(true);
+        // data has data of particular notes that has to be updated
         changeUpdateData(data);
-        s2ndTimeUpdate ? sets2ndTimeUpdate(false) : sets2ndTimeUpdate(true)
+        secondTimeUpdate ? setSecondTimeUpdate(false) : setSecondTimeUpdate(true)
     }
 
     return (
         <>
-            <button className="create-new" onClick={() => update ? changeUpdate(false) : null} style={update ? { opacity: "100" } : { opacity: "0" }}>Create New</button>
+            {/* btn to change state from update to create new Note , it only show when when we are updating any note */}
+            <button className="create-new" onClick={() => isUpdate ? changeIsUpdate(false) : null} style={isUpdate ? { opacity: "100" } : { opacity: "0" }}>Create New</button>
 
-            {update ? <UpdateArea
-                updateData={updateData}
-                sendArray={sendArray}
-                changeUpdate={changeUpdate}
-                note={note}
-                changeIT={changeIT}
-                s2ndTimeUpdate={s2ndTimeUpdate}
-            /> : <CreateArea sendArray={sendArray} />}
+            {/* if update is true then, show update info in <UpdateArea> else <CreateArea ></CreateArea> */}
+            {isUpdate ?
+                <UpdateArea
+                    updateData={updateData}
+                    takeNote={takeNote}
+                    changeIsUpdate={changeIsUpdate}
+                    secondTimeUpdate={secondTimeUpdate}
+                />
+                :
+                <CreateArea takeNote={takeNote} />}
 
+            {/* area to display all existing notes in DB */}
             <div className="noteArea">
-                {array.map((data, index) => (
+                {keeper && keeper.map((data, index) => (
                     <Notes
                         key={index}
-                        id={data._id}
-                        title={data.title}
-                        content={data.content}
+                        data={data}
                         onDelete={deleteNote}
                         onUpdate={updateNote}
                     />
