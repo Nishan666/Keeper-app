@@ -43,6 +43,7 @@ const UpdateArea = (props) => {
 
     // on click of submit btn ,send the note data
     const handleSubmit = async (event) => {
+        console.log(note);
         await props.takeNote(note);
         // emptying fields after updating in DB
         changeIT({
@@ -79,9 +80,9 @@ const UpdateArea = (props) => {
                 {note.title === "" && note.content === "" ? <></> :
                     <>
                         <Zoom in><Fab className="del" color="primary" aria-label="add" onClick={() => changeIT({
-                            title: "",
                             content: "",
-                            _id: ""
+                            title :props.title,
+                            _id : props._id
                         })}><CloseIcon /></Fab></Zoom><Zoom in>
                             <Fab className="add" color="primary" aria-label="add" onClick={handleSubmit}><AddTaskTwoToneIcon /></Fab>
                         </Zoom></>}

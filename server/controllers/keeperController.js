@@ -2,15 +2,17 @@ const kepperModel = require("../models/kepperModel")
 
 const date = new Date();
 
+// send all the note from db
 module.exports.getKeeper = async (req,res)=>{
     const keeper = await kepperModel.find()
-    res.send(keeper);
+    res.status(200).json(keeper);
 }
 
+// save the returned note to db
 module.exports.saveKeeper = async (req, res) => {
     data = req.body;
     kepperModel
-        .create({ title: data.title, content: data.content, author: data.author,email : data.email, createdOn: date, updatedOn : date})
+        .create({ title: data.title, content: data.content,email : data.email})
     .then((data)=>{
         console.log("Added Sucessfully...");
         console.log(data);
@@ -18,10 +20,11 @@ module.exports.saveKeeper = async (req, res) => {
     })
 }
 
+// update the existing note based on returned _id
 module.exports.updateKeeper = async (req, res) => {
     const data =  req.body;
     kepperModel
-        .findByIdAndUpdate(data._id, { title: data.title, content: data.content, author: data.author,email : data.email, updatedOn: date })
+        .findByIdAndUpdate(data._id, { title: data.title, content: data.content,email : data.email})
         .then((data) => {
             console.log("Update Sucessfully...");
             res.status(200).json(data)
@@ -29,6 +32,7 @@ module.exports.updateKeeper = async (req, res) => {
         .catch((err)=>console.log(err))
 }
 
+// delete the note from db
 module.exports.deleteKeeper = async (req, res) => {
     const { _id } = req.body;
     kepperModel

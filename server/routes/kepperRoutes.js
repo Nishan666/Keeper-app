@@ -3,6 +3,7 @@ const { getKeeper, saveKeeper, updateKeeper, deleteKeeper } = require("../contro
 
 const router = Router();
 
+// routes to serve the client request
 router.get('/',getKeeper);
 router.post('/save', saveKeeper);
 router.post('/update', updateKeeper);

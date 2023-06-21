@@ -2,7 +2,8 @@ import React from "react";
 import OfflineBoltIcon from "@mui/icons-material/OfflineBolt";
 import { Link } from "react-router-dom";
 
-function Header() {
+// header section with nav bar
+const Header = ()=> {
   return (
     <header className="mainHeading">
       <h1 className="titleName"><OfflineBoltIcon />Keeper</h1>

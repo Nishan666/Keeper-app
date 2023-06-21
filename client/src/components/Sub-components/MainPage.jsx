@@ -10,7 +10,11 @@ const MainPage = () => {
 
     // keeper state is mantained and updated using useReducer
     // keeper has all the Notes
-    const {keeper , dispatch} = useKeeperContext();
+    //dispatch from useReducer , it maintain keeper state
+    //it has 2 field ->
+    // 1.type (type of operation)
+    // 2.payload (data that to be updated)
+    const { keeper, dispatch } = useKeeperContext();
 
     // store state of update status , if update is true then, show update info in <UpdateArea> else <CreateArea >
     const [isUpdate, changeIsUpdate] = useState(false);
@@ -23,12 +27,13 @@ const MainPage = () => {
     // call every time when the page is refreshed
     useEffect(() => {
         getKeeper(dispatch);
-        console.log("boom!!!");
     }, [dispatch])
 
-    const takeNote = (note) => {
+    const takeNote = async (note) => {
         // if update is true updateData(it has extra data _id) else addKeeper(it has only title and content)
-        isUpdate ? updateKeeper(note , dispatch) : addKeeper(note ,dispatch);
+        isUpdate ? await updateKeeper(note, dispatch) : await addKeeper(note, dispatch);
+        //rerender the with updated data
+        getKeeper(dispatch)
     }
 
 
@@ -36,7 +41,7 @@ const MainPage = () => {
     //*********Notes**********/
     //it is called when delete btn is clicked on note
     const deleteNote = (_id) => {
-        deleteKeeper(_id , dispatch);
+        deleteKeeper(_id, dispatch);
     }
     //it is called when update btn is clicked on note
     const updateNote = (data) => {
