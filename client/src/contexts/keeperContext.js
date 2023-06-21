@@ -21,11 +21,10 @@ const keeperReducer = (state, action) => {
             }
         //while updating existing note
         case 'UPDATE_KEEPER':
-
             if (!action.payload) {
                 return state; // If payload is undefined, return the current state
             }
-
+            // action.payload is updated notes , so ...state.keeper.filter... remove existing note the is updated
             const updatedKeeper = [action.payload, ...state.keeper.filter((w) => w._id !== action.payload._id)];
             console.log(updatedKeeper);
             return {
