@@ -1,33 +1,41 @@
 import React, { useState } from "react";
 import "./login.css"
+import { useSignup } from "../../../hooks/useSignup";
 
-import { signupUser } from "../../../utils/userApi";
-
+// Signup page component
 const Signup = () => {
+    // useState to maintain email and password
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const {signup , error , isLoading} = useSignup();
 
-    const [formData, setFormData] = useState({ email: "", password: "" });
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    };
-
-    const handleSubmit = (event) => {
+    // onClick of submit Btn
+    const handleSubmit = async (event) => {
+        // prevent refreshing of page after form submit
         event.preventDefault();
-        signupUser(formData)
-        setFormData({ email: "", password: "" })
+
+        await signup(email , password);
+
+        // clearing fields after submit
+        setEmail('')
+        setPassword('')
     }
 
     return (
-            <div id="formContent">
-                <form onSubmit={handleSubmit}>
-                    <input type="emial" id="email" className="fadeIn second" name="email" placeholder="email" onChange={handleChange} value={formData.email} />
-                    <input type="password" id="password" className="fadeIn third" name="password" placeholder="password" onChange={handleChange} value={formData.password} />
-                    <div className="submitBTN" id="submit">
-                    <input type="submit"  className="btn" value="Sign Up" />
-                    </div>
-                </form>
-            </div>
+        <div id="formContent">
+            <form onSubmit={handleSubmit}>
+                {/* input area for email */}
+                <input type="email" id="email" className="fadeIn second" placeholder="email" onChange={(e) => { setEmail(e.target.value) }} value={email} />
+                {/* input area for password */}
+                <input type="password" id="password" className="fadeIn third" placeholder="password" onChange={(e) => { setPassword(e.target.value) }} value={password} />
+                {/* submit btn */}
+                <div disable={isLoading} className="submitBTN" id="submit">
+                    <input disabled={isLoading} type="submit" className="btn" value="Sign Up" />
+                    {error && <div>{error}</div>}
+                </div>
+            </form>
+        </div>
     )
 }
 

@@ -1,33 +1,36 @@
 import React, { useState } from "react";
 import "./login.css"
 
-import { loginUser } from "../../../utils/userApi";
-
+// Login page component
 const Login = () => {
+    // useState to maintain email and password
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-    const [formData, setFormData] = useState({ email: "", password: "" });
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    };
-
-    const handleSubmit = (event) => {
+    // onClick of submit Btn
+    const handleSubmit = async (event) => {
+        // prevent refreshing of page after form submit
         event.preventDefault();
-        loginUser(formData)
-        setFormData({ email: "", password: "" })
+
+        // clearing fields after submit
+        setEmail('')
+        setPassword('')
     }
 
     return (
-            <div id="formContent">
-                <form onSubmit={handleSubmit}>
-                    <input type="emial" id="email" className="fadeIn second" name="email" placeholder="email" onChange={handleChange} value={formData.email} />
-                    <input type="password" id="password" className="fadeIn third" name="password" placeholder="password" onChange={handleChange} value={formData.password} />
-                    <div className="submitBTN" id="submit">
-                    <input type="submit"  className="btn" value="Log In" />
-                    </div>
-                </form>
-            </div>
+        <div id="formContent">
+            <form onSubmit={handleSubmit}>
+                {/* input area for email */}
+                <input type="email" id="email" className="fadeIn second" placeholder="email" onChange={(e) => { setEmail(e.target.value) }} value={email} />
+                {/* input area for password */}
+                <input type="password" id="password" className="fadeIn third" placeholder="password" onChange={(e) => { setPassword(e.target.value) }} value={password} />
+                {/* submit btn */}
+                <div className="submitBTN" id="submit">
+                    <input type="submit" className="btn" value="Log In" />
+                </div>
+            </form>
+        </div>
     )
 }
 
