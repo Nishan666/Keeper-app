@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Notes from "./Notes";
 import CreateArea from "./CreateArea";
-import { getKeeper, addKeeper, deleteKeeper, updateKeeper } from "../../utils/HandleApi";
+import { getKeeper, addKeeper, deleteKeeper, updateKeeper } from "../../utils/keeperApi";
 import UpdateArea from "./UpdateArea"
 import { useKeeperContext } from "../../hooks/useKeeperContext";
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 
 const MainPage = () => {
@@ -16,6 +17,9 @@ const MainPage = () => {
     // 2.payload (data that to be updated)
     const { keeper, dispatch } = useKeeperContext();
 
+    // get current login user info
+    const { user } = useAuthContext();
+
     // store state of update status , if update is true then, show update info in <UpdateArea> else <CreateArea >
     const [isUpdate, changeIsUpdate] = useState(false);
     // state to store the data of single note that come for update
@@ -23,15 +27,17 @@ const MainPage = () => {
     //update note is called when already 1 update exists
     const [secondTimeUpdate, setSecondTimeUpdate] = useState(false);
 
+    
+
 
     // call every time when the page is refreshed
     useEffect(() => {
-        getKeeper(dispatch);
-    }, [dispatch])
+        getKeeper(dispatch ,user );
+    }, [dispatch,user,isUpdate])
 
     const takeNote = async (note) => {
         // if update is true updateData(it has extra data _id) else addKeeper(it has only title and content)
-        isUpdate ? await updateKeeper(note, dispatch) : await addKeeper(note, dispatch);
+        isUpdate ? await updateKeeper(note, dispatch ,user ) : await addKeeper(note, dispatch ,user);
         //rerender the with updated data
         getKeeper(dispatch)
     }
@@ -41,7 +47,7 @@ const MainPage = () => {
     //*********Notes**********/
     //it is called when delete btn is clicked on note
     const deleteNote = (_id) => {
-        deleteKeeper(_id, dispatch);
+        deleteKeeper(_id, dispatch ,user);
     }
     //it is called when update btn is clicked on note
     const updateNote = (data) => {

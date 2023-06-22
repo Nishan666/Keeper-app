@@ -24,6 +24,12 @@ app.use(bodyParser.json());
 // used to rectify some of axios errors
 app.use(cors());
 
+// log the requested path and method
+app.use((req , res , next)=>{
+    console.log(req.path , req.method);
+    next();
+})
+
 // connect to db
 mongoose
     .connect(process.env.MONGODB_URL)

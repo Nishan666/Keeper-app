@@ -18,7 +18,7 @@ const Signup = () => {
         await signup(email , password);
 
         // clearing fields after submit
-        setEmail('')
+        // setEmail('')
         setPassword('')
     }
 
@@ -30,7 +30,7 @@ const Signup = () => {
                 {/* input area for password */}
                 <input type="password" id="password" className="fadeIn third" placeholder="password" onChange={(e) => { setPassword(e.target.value) }} value={password} />
                 {/* submit btn */}
-                <div disable={isLoading} className="submitBTN" id="submit">
+                <div className="submitBTN" id="submit">
                     <input disabled={isLoading} type="submit" className="btn" value="Sign Up" />
                     {error && <div>{error}</div>}
                 </div>

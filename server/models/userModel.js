@@ -39,9 +39,9 @@ userSchema.statics.signup = async function (email, password) {
     }
 
     // notify. of salt rounds
-    const salt = await bcrypt.genSaltSync(10);
+    const salt = await bcrypt.genSalt(10);
     // encryting the password to hash
-    const hash = await bcrypt.hashSync(password, salt);
+    const hash = await bcrypt.hash(password, salt);
     //create user in database with emial and hased password
     const user = await this.create({email , password : hash})    //or ({email : email , password :hash})
 

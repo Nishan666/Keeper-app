@@ -82,8 +82,9 @@ const UpdateArea = (props) => {
                         <Zoom in><Fab className="del" color="primary" aria-label="add" onClick={() => changeIT({
                             content: "",
                             title :props.updateData.title,
-                            _id : props.updateData._id
-                        })}><CloseIcon /></Fab></Zoom><Zoom in>
+                            _id: props.updateData._id
+                        })
+                        }><CloseIcon /></Fab></Zoom><Zoom in>
                             <Fab className="add" color="primary" aria-label="add" onClick={handleSubmit}><AddTaskTwoToneIcon /></Fab>
                         </Zoom></>}
             </form>

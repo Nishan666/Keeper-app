@@ -14,7 +14,6 @@ const keeperReducer = (state, action) => {
             }
         //while creating new note
         case 'CREATE_KEEPER':
-            console.log(action.payload);
             return {
                 // combine new object with already existing array of object
                 keeper: [action.payload, ...state.keeper]
@@ -26,7 +25,6 @@ const keeperReducer = (state, action) => {
             }
             // action.payload is updated notes , so ...state.keeper.filter... remove existing note the is updated
             const updatedKeeper = [action.payload, ...state.keeper.filter((w) => w._id !== action.payload._id)];
-            console.log(updatedKeeper);
             return {
                 keeper: updatedKeeper
             }
