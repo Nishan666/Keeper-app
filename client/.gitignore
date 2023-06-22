@@ -32,7 +32,7 @@ typings/
 *.tgz
 
 # Yarn Integrity file
-<<<<<<< HEAD
+
 .yarn-integrity
 
 
@@ -77,4 +77,4 @@ packages/react-devtools-shell/dist
 packages/react-devtools-timeline/dist
 =======
 .yarn-integrity
->>>>>>> 05e6b806f7e1e38143e7e8f9a844644c7d861531
+
