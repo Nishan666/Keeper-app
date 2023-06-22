@@ -10,18 +10,19 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
     <React.StrictMode>
-    {/* // context Api Provider
+        {/* // context Api Provider
     // auth will be always at top ,, AuthContextProvider ->dispatch and user */}
-    <AuthContextProvider>
-        {/* KeeperContextProvider -->  dispatch and keeper */}
-        <KeeperContextProvider>
-            <BrowserRouter>
-                {/* for Scroll the screen back to to  after any changes*/}
-                <ScrollToTop />
-                <App />
-            </BrowserRouter>
-        </KeeperContextProvider>
-    </AuthContextProvider>
+        <AuthContextProvider>
+            {/* KeeperContextProvider -->  dispatch and keeper */}
+            <KeeperContextProvider>
+                {/* // process.env.PUBLIC_URL -> used while hosting */}
+                <BrowserRouter basename={process.env.PUBLIC_URL}>
+                    {/* for Scroll the screen back to to  after any changes*/}
+                    <ScrollToTop />
+                    <App />
+                </BrowserRouter>
+            </KeeperContextProvider>
+        </AuthContextProvider>
     </React.StrictMode>
 )
 

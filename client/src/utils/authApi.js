@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const baseURL = "https://keeper-8jjv.onrender.com"
-const baseURL = "http://localhost:5000/user"
+const baseURL = "https://keeper-8jjv.onrender.com/user"
+// const baseURL = "http://localhost:5000/user"
 
 // intraction with server for signup operation
 const signupApi = async (email, password) => {
