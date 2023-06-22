@@ -1,7 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
-const bcrypt = require('bcrypt');
 
 // createToken can be used for both login and signup
 const createToken = (_id)=>{
@@ -19,8 +18,10 @@ const signupUser = async (req, res) => {
         const user = await User.signup(email , password)
         // creating jwt token
         const token = createToken(user._id)
+        console.log("signUp sucessful");
         res.status(200).json({email , token})
     } catch (error) {
+        console.log(error.message);
        res.status(400).json({error : error.message}) 
     }
 }

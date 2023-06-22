@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator')
+const bcrypt = require('bcrypt')
 
 const Schema = mongoose.Schema
 
@@ -13,7 +14,8 @@ const userSchema = new Schema({
 })
 
 // the below part can also be written in userController but reson of writting here is to maintain readablity
-userSchema.static.signup = async (email, password) => {
+// we cant use flat arrow function here, it will show error ->>this.findOne is not a function
+userSchema.statics.signup = async function (email, password) {
 
     // here execution end at throw Error or return
 
@@ -47,8 +49,10 @@ userSchema.static.signup = async (email, password) => {
 }
 
 
+
 // the below part can also be written in userController but reson of writting here is to maintain readablity
-userSchema.static.login = async (email, password) => {
+// we cant use flat arrow function here, it will show error ->>this.findOne is not a function
+userSchema.statics.login = async function(email, password){
 
     // here execution end at throw Error or return
 
