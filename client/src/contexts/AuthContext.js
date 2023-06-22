@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 
 // create -> context api
 export const AuthContext = createContext();
@@ -25,6 +25,14 @@ export const AuthContextProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(authReducer, { user: null })
     // initally state = {user : null}  there is no user
+
+    // check localStorage for existing user on first load
+    useEffect(()=>{
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user){
+            dispatch({type : 'LOGIN' , payload : user})   //user-> email and token
+        }
+    },[])
 
     // notifying the auth status
     console.log('AuthContext state : ' , state);
