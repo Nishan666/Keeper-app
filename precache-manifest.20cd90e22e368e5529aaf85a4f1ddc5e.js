@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e1892a55a010b989fee8",
+    "revision": "84b916e33cf1c44e4cd3",
     "url": "/Keeper-app/static/css/main.e07e1aff.chunk.css"
   },
   {
-    "revision": "e1892a55a010b989fee8",
-    "url": "/Keeper-app/static/js/main.86b7a63c.chunk.js"
+    "revision": "84b916e33cf1c44e4cd3",
+    "url": "/Keeper-app/static/js/main.1706eb40.chunk.js"
   },
   {
     "revision": "4a2ccb5260b2071bb592",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/Keeper-app/static/js/2.ffb18979.chunk.js"
   },
   {
-    "revision": "bc866ef6c06fc1562d0f786456bf2e3e",
+    "revision": "f67dcee5b0a3880a7fffb63a1c0efe3f",
     "url": "/Keeper-app/index.html"
   }
 ];
