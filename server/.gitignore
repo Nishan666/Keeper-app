@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 # Created by https://www.gitignore.io/api/node,vim,git,macos,linux,sublimetext
@@ -155,3 +156,8 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/node,vim,git,macos,linux,sublimetext
+=======
+/node_modules
+
+.env
+>>>>>>> 05e6b806f7e1e38143e7e8f9a844644c7d861531
