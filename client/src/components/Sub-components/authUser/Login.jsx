@@ -33,7 +33,7 @@ const Login = () => {
                 {/* submit btn */}
                 <div className="submitBTN" id="submit">
                     <input disabled={isLoading} type="submit" className="btn" value="Log In" />
-                    {error && <div>{error}</div>}
+                    {error && <div className="error">{error}</div>}
                 </div>
             </form>
         </div>

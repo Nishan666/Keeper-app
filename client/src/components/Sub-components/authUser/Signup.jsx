@@ -32,7 +32,7 @@ const Signup = () => {
                 {/* submit btn */}
                 <div className="submitBTN" id="submit">
                     <input disabled={isLoading} type="submit" className="btn" value="Sign Up" />
-                    {error && <div>{error}</div>}
+                    {error && <div className="error">{error}</div>}
                 </div>
             </form>
         </div>

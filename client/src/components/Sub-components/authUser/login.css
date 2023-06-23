@@ -22,6 +22,19 @@
     font-size: 1rem;
     color: rgb(70, 62, 62);
     border-radius: 4px;
-    padding: .5rem;
+    padding: 0.5rem;
     background-color: rgb(255, 244, 229);
+}
+
+div.error {
+    padding: 10px;
+    background: #ffefef;
+    border: 1px solid var(--error);
+    color: var(--error);
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+input.error {
+    border: 1px solid var(--error);
 }
