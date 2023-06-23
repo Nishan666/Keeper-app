@@ -60,7 +60,7 @@ const UpdateArea = (props) => {
 
 
     return (
-        <div>
+        <div className="create-div">
             {/* form with already existing info ,which is ready to update */}
             <form className="create-note">
                 <input
@@ -79,6 +79,8 @@ const UpdateArea = (props) => {
                 {/* hide submit and clear btn when there is no data in the fields */}
                 {note.title === "" && note.content === "" ? <></> :
                     <>
+                    {/* btn to change state from update to create new Note , it only show when when we are updating any note */}
+            <button className="create-new" onClick={() => props.isUpdate ? props.changeIsUpdate(false) : null} style={props.isUpdate ? { opacity: "100" } : { opacity: "0" }}>Create New</button>
                         <Zoom in><Fab className="del" color="primary" aria-label="add" onClick={() => changeIT({
                             content: "",
                             title :props.updateData.title,

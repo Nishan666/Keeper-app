@@ -20,8 +20,8 @@ const Header = ()=> {
       {/* if user is present then show email and logout btn else show login and signup btn */}
       {user ?
       <div>
-            <span className="text-nav">{user.email}  &nbsp; &nbsp; &nbsp; &nbsp;</span>
-            <span className="text-nav" style={{ cursor: "pointer" }} onClick={() => logout()}>LogOut</span>
+            <span className="text-nav email-id">{user.email}  &nbsp; &nbsp; &nbsp;</span>
+            <span className="text-nav logout-button" style={{ cursor: "pointer" }} onClick={() => logout()}>LogOut</span>
         </div>
       :
           <div>

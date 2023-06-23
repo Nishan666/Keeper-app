@@ -9,11 +9,8 @@ html {
 body {
   background: #eee;
   padding: 0 16px;
-  background-color: #008c41;
   background-color: #ffffff;
 background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-
 }
 
 header {
@@ -28,6 +25,25 @@ header h1 {
   font-family: "McLaren", cursive;
   font-weight: 200;
   display: inline;
+}
+
+.mainHeading{
+  display: flex;
+  justify-content: space-between;
+}
+
+.navBarLink{
+  float: right;
+  display: flex;
+  column-gap: 3rem;
+  margin: 1rem;
+}
+
+.text-nav{
+  color: #fff;
+  font-family: "McLaren", cursive;
+  font-weight: 900;
+  text-decoration: none;
 }
 
 footer {
@@ -46,10 +62,11 @@ footer p {
 .noteArea{
   width: 100%;
   display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 10px;
     justify-items: center;
     align-items: center;
+    margin-bottom: 30px;
 }
 
 .note {
@@ -132,37 +149,101 @@ form.create-note button.add {
 }
 
 .create-new{
-float: right;
-margin-right: 5rem;
-margin-top:5rem;
-background: #f5ba13;
+  position: absolute;
+  right: 125px;
+  bottom: -18px;
+  background: #f5ba13;
   color: #fff;
   border: none;
   border-radius: 10%;
-  width: 96px;
+  width: 100px;
   height: 36px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
 }
 
-.mainHeading{
-  display: flex;
-  justify-content: space-between;
+
+
+@media screen and (max-width: 768px) {
+  .create-div{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  form.create-note {
+    position: relative;
+    width: 280px;
+    height: auto;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+    width: 100%;
+    max-width: 280px;
+    margin: 20px auto;
+    padding: 10px;
+  }
+  /* form.create-note input, */
+  form.create-note textarea {
+    padding-bottom: 10px;
+  }
+
+
+  /* font-size */
+  header h1 {
+    font-size: 1.4em;
+  }
+
+  .text-nav {
+    font-size: 0.9em;
+  }
+
+  .note h1 {
+    font-size: 0.9em;
+  }
+
+  .note p {
+    font-size: 0.9em;
+  }
+  form.create-note input,
+  form.create-note textarea {
+    font-size: 1em;
+  }
+
+  /* Decrease the font size of buttons in create note form */
+  form.create-note button.del,
+  form.create-note button.add {
+    font-size: 0.9em;
+  }
+
+
+
+
+  header {
+    padding: 16px;
+  }
+
+  .mainHeading {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navBarLink {
+    margin-top: 10px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-nav {
+    margin: 0 10px;
+    margin: 10px;
+    text-align: center;
+  }
+
 }
 
-.navBarLink{
-  float: right;
-  display: flex;
-  column-gap: 3rem;
-  margin: 1rem;
-}
 
-.text-nav{
-  color: #fff;
-  font-family: "McLaren", cursive;
-  font-weight: 900;
-  text-decoration: none;
-}
 
 

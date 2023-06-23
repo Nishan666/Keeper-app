@@ -60,12 +60,10 @@ const MainPage = () => {
 
     return (
         <>
-            {/* btn to change state from update to create new Note , it only show when when we are updating any note */}
-            <button className="create-new" onClick={() => isUpdate ? changeIsUpdate(false) : null} style={isUpdate ? { opacity: "100" } : { opacity: "0" }}>Create New</button>
-
             {/* if update is true then, show update info in <UpdateArea> else <CreateArea ></CreateArea> */}
             {isUpdate ?
                 <UpdateArea
+                    isUpdate={isUpdate}
                     updateData={updateData}
                     takeNote={takeNote}
                     changeIsUpdate={changeIsUpdate}
